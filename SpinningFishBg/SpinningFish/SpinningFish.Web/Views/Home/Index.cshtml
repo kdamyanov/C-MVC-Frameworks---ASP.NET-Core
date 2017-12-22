@@ -1,0 +1,79 @@
+﻿@model IEnumerable<ReelListingServiceModel>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+<br/>
+<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000" >
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+    <div>
+        <h3 class="text-center">Welcome To The Spinning Reels SW Online Store.</h3>
+    </div>
+    <br/>
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <img src="~/images/Daiwa_banner.svg" alt="Daiwa" class="img-responsive" />
+            <div class="carousel-caption" role="option">
+                <p>
+                    <a class="btn btn-default" href="/shop/reels/all/2">
+                        Learn More
+                    </a>
+                </p>
+            </div>
+        </div>
+        <div class="item">
+            <img src="~/images/Shimano_banner.svg" alt="Shimano" class="img-responsive" />
+            <div class="carousel-caption" role="option">
+                <p>
+                    
+                    <a class="btn btn-default" href="/shop/reels/all/1">
+                        Learn More
+                    </a>
+                </p>
+            </div>
+        </div>
+        <div class="item">
+            <img src="~/images/pen_banner.svg" alt="Penn" class="img-responsive" />
+            <div class="carousel-caption" role="option">
+                <p>
+                    <a class="btn btn-default" href="/shop/reels/all/5">
+                        Learn More
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
+<br/>
+<hr/>
+<div class="row">
+    @foreach (var reel in Model)
+    {
+        <div class="col-md-3">
+            <ul class="list-group">
+                <li class="list-group-item" id="brand-list">
+                    <img src="data:image;base64,@Convert.ToBase64String(reel.Image)" style="height: 150px; width: 150px;" alt="@reel.Model"/>
+                    <p><a href="/shop/reels/details/@reel.Id">@reel.Model</a></p>
+                    <p>Price :@reel.Price bgn</p>
+                    <hr/>
+                    <a class="btn btn-primary" asp-area="Shop" asp-controller="ShoppingCart" asp-action="AddToCart" asp-route-id="@reel.Id">Buy</a>
+                    <br />
+                </li>
+            </ul>
+        </div>
+    }
+</div>
+

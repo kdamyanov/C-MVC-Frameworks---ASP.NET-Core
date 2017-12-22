@@ -1,0 +1,9 @@
+﻿@model int
+@{
+    ViewData["Title"] = "Delete Reel";
+}
+
+<h2>Are you sure yoy want to delete this reel?</h2>
+
+<a href="/admin/reels/" class="btn btn-default">Back</a>
+<a href="/admin/reels/destroy/@Model" class="btn btn-danger">Confirm Delete</a>
