@@ -1,0 +1,54 @@
+﻿@model IEnumerable<CartItemViewModel>
+@{
+    ViewData["Title"] = "Items";
+}
+
+<h2>Items</h2>
+
+<ul class="breadcrumb">
+    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+    <li><a asp-area="Shop" asp-controller="ShoppingCart" asp-action="Items">Shopping Cart</a></li>
+</ul>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total Price</th>
+        </tr>
+    </thead>
+    <tbody>
+  
+    @foreach (var item in Model)
+    {
+
+        <tr class="info">
+            <td>@item.Title</td>
+            <td>@item.Price</td>
+            <td>@item.Quantity</td>
+            <td>@(@item.Price * @item.Quantity)</td>
+        </tr>
+    }
+       
+    
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td  class="info"><strong>@Model.Sum(p => p.Price * p.Quantity).ToString("F") BGN</strong></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><a class="btn btn-primary btn-sm" asp-area="Shop" asp-controller="ShoppingCart" asp-action="FinishOrder">Finish Order</a></td>
+    </tr>
+    </tbody>
+</table> 
+
+     
+<br/>
+<hr/>
+  
+

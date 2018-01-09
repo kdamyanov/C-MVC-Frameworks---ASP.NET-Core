@@ -1,0 +1,71 @@
+﻿@model IEnumerable<AdminReelListingServiceModel>
+@{
+    ViewData["Title"] = "All Reels";
+}
+<h2>
+    @ViewData["Title"]
+    <a asp-area="Admin" asp-controller="Reels" asp-action="Create" class="btn btn-success btn-sm">New Reel</a>
+</h2>
+
+<table class="table table-striped table-hover table-bordered table-responsive">
+    <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                Model
+            </th>
+            <th>
+                Category
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+                Quantity
+            </th>
+            <th>
+                АddedOnDate
+            </th>
+            <th>
+                Image
+            </th>
+            <th>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var reel in Model)
+    {
+        <tr>
+            <td>
+                1
+            </td>
+            <td>
+                @reel.Model
+            </td>
+            <td>
+                @reel.Category
+            </td>
+            <td>
+                @reel.Price bgn
+            </td>
+            <td>
+                @reel.Quantity ps
+            </td>
+            <td>
+                @reel.АddedOnDate.ToShortDateString()
+            </td>
+            <td>
+                <img src="data:image;base64,@Convert.ToBase64String(reel.Image)" style="height: 100px; width: 100px" alt="@reel.Model"/>
+            </td>
+            <td>
+                <a href="/admin/reels/edit/@reel.Id" class="btn btn-warning">Edit</a>
+                <a href="/admin/reels/delete/@reel.Id" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+

@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Contact Us";
+}
+<h2>@ViewData["Title"]</h2>
+<hr/>
+
+<div id="map" style="width:100%;height:500px"></div>
+<hr />
+<address>
+    Bulgaria<br />
+    Sofia<br />
+    <abbr title="Phone">Phone:</abbr>
+    +359 884 04 76 77
+</address>
+
+<address>
+    <strong>Support:</strong> <a href="mailto:spinningfishbg@gmail.com">spinningfishbg@gmail.com</a><br />
+</address>
+
+<script>
+    function myMap() {
+        var myCenter = new google.maps.LatLng(42.680463, 23.284673);
+        var mapCanvas = document.getElementById("map");
+        var mapOptions = { center: myCenter, zoom: 7 };
+        var map = new google.maps.Map(mapCanvas, mapOptions);
+        var marker = new google.maps.Marker({ position: myCenter });
+        marker.setMap(map);
+
+        var infowindow = new google.maps.InfoWindow({
+            content: "Spinning Reel SW"
+        });
+        infowindow.open(map, marker);
+
+        google.maps.event.addListener(marker, 'click', function () {
+            map.setZoom(13);
+            map.setCenter(marker.getPosition());
+        });
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuaQNRpnszU2Zm86hzhriNPkHq6swuPnc&callback=myMap"></script>
+
+
+
+
+
